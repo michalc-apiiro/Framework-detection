@@ -10,6 +10,9 @@ lazy val root = (project in file("."))
       // SLF4J Binding for Log4j
       "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.20.0",
       // Log4j Core (logging implementation)
-      "org.apache.logging.log4j" % "log4j-core" % "2.20.0"
+      "org.apache.logging.log4j" % "log4j-core" % "2.20.0",
+      // TinyLog Core
+      "org.tinylog" % "tinylog-api" % "2.6.2",
+      "org.tinylog" % "tinylog-impl" % "2.6.2"
     )
   )
