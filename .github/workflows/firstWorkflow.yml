@@ -6,7 +6,8 @@ name: firstWorkflow
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: ["main"]
+    branches: 
+      - main
   pull_request:
     branches: ["main"]
 
@@ -22,15 +23,26 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # Step 1: Checkout the repository code
+      - name: Checkout code
+        #Fetches the repository with prebuild action
+        uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      # Step 2: Set up a Python environment
+      - name: Set up Python
+        # prebuild with an existing action python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # Step 3: Run the regex validation script
+      - name: Run slf4j Check
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          python -c "
+          import re
+          with open('build.gradle.kts', 'r') as f:
+              content = f.read()
+              pattern = r'slf4j'
+              if not re.search(pattern, content):
+                  raise Exception('slf4j Check failed: slf4j not found.')
+          "
