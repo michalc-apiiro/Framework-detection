@@ -1,0 +1,17 @@
+{
+    "name": "FRAMEWORK-DETECTION",
+    "version": "1.0.0",
+    "description": "A project that integrates Graylog2, Loggly, and Logger2 (Winston) for logging.",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "graylog2": "^1.3.1",
+      "loggly": "^1.1.0",
+      "winston": "^3.3.3"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+  
